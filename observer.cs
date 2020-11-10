@@ -64,7 +64,7 @@ namespace RefactoringGuru.DesignPatterns.Observer.Conceptual
     {
         public void Update(ISubject subject)
         {
-            if ((subject as Subject).Randomize < 5)
+            if ((subject as Subject).Randomize < 5 || (subject as Subject).Randomize == 1000)
             {
                 Console.WriteLine("ГИБДД 1: отреагировал на сообщение.");
             }
@@ -75,7 +75,7 @@ namespace RefactoringGuru.DesignPatterns.Observer.Conceptual
     {
         public void Update(ISubject subject)
         {
-            if ((subject as Subject).Randomize < 10)
+            if ((subject as Subject).Randomize < 10 || (subject as Subject).Randomize == 1000)
             {
                 Console.WriteLine("ГИБДД 2: отреагировал на сообщение.");
             }
@@ -101,11 +101,11 @@ namespace RefactoringGuru.DesignPatterns.Observer.Conceptual
                         int key = Convert.ToInt32(Console.ReadLine());
                         if(key == 1)
                         {
-                            subject.Add(observerA);
+                            subject.Add(observerA); Console.ReadKey();  Console.Clear();
                         }
                         if(key ==2)
                         {
-                            subject.Add(observerB);
+                            subject.Add(observerB); Console.ReadKey();  Console.Clear();
                         }
                         break;
                     case 2:
@@ -113,11 +113,11 @@ namespace RefactoringGuru.DesignPatterns.Observer.Conceptual
                         int keyy = Convert.ToInt32(Console.ReadLine());
                         if (keyy == 1)
                         {
-                            subject.Delete(observerA);
+                            subject.Delete(observerA); Console.ReadKey();  Console.Clear();
                         }
                         if (keyy == 2)
                         {
-                            subject.Delete(observerB);
+                            subject.Delete(observerB); Console.ReadKey(); Console.Clear();
                         }
                         break;
                     case 3:
