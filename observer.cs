@@ -20,21 +20,19 @@ namespace RefactoringGuru.DesignPatterns.Observer.Conceptual
 
     public class Subject : ISubject
     {      
-        public int State { get; set; } = -0;
+        public int Randomize { get; set; } = -0;
       
-        private List<IObserver> gau = new List<IObserver>();
-
-        // Методы управления подпиской.
+        private List<IObserver> gau = new List<IObserver>();       
         public void Add(IObserver observer)
         {
-            Console.WriteLine("Вы добавили нового наблюдателя.");
+            Console.WriteLine("Вы добавили нового наблюдателя.(подписка)");
             this.gau.Add(observer);
         }
 
         public void Delete(IObserver observer)
         {
             this.gau.Remove(observer);
-            Console.WriteLine("Вы удалили наблюдателя.");
+            Console.WriteLine("Вы удалили наблюдателя.(отписка)");
         }
   
         public void Message()
@@ -50,12 +48,13 @@ namespace RefactoringGuru.DesignPatterns.Observer.Conceptual
         }
          
         public void SomeBusinessLogic()
-        {           
-            this.State = new Random().Next(0, 10);
+        {
+            Console.WriteLine("Введите приоритет показа: " + this.Randomize);
+            this.Randomize = Convert.ToInt32(Console.ReadLine());
 
             Thread.Sleep(15);
 
-            Console.WriteLine("Приоритет показа сообщения изменился на: " + this.State);
+            Console.WriteLine("Приоритет показа сообщения изменился на: " + this.Randomize);
             this.Message();
         }
     }
@@ -65,7 +64,7 @@ namespace RefactoringGuru.DesignPatterns.Observer.Conceptual
     {
         public void Update(ISubject subject)
         {
-            if ((subject as Subject).State < 10)
+            if ((subject as Subject).Randomize < 5)
             {
                 Console.WriteLine("ГИБДД 1: отреагировал на сообщение.");
             }
@@ -76,7 +75,7 @@ namespace RefactoringGuru.DesignPatterns.Observer.Conceptual
     {
         public void Update(ISubject subject)
         {
-            if ((subject as Subject).State < 10)
+            if ((subject as Subject).Randomize < 10)
             {
                 Console.WriteLine("ГИБДД 2: отреагировал на сообщение.");
             }
